@@ -1,10 +1,120 @@
 import React, { useState, useRef, useEffect } from "react";
 import Transition from "../utils/Transition";
 
+import { default as ReactSelect } from "react-select";
+import { components } from "react-select";
+
+const Option = (props) => {
+  return (
+    <div>
+      <components.Option {...props}>
+        <input
+          type="checkbox"
+          checked={props.isSelected}
+          onChange={() => null}
+        />{" "}
+        <label>{props.label}</label>
+      </components.Option>
+    </div>
+  );
+};
+
+function DropdownFilter({ align, taxFilter, setTaxFilter }) {
+  const [optionSelected, setOptionSelected] = useState("");
+
+  const taxes2 = [
+    { value: "es_general_21", label: "es_general_21" },
+    { value: "es_reduced_10", label: "es_reduced_10" },
+    { value: "es_super-reduced_4", label: "es_super-reduced_4" },
+    { value: "fr_general_20", label: "fr_general_20" },
+    { value: "fr_reduced_5.5", label: "fr_reduced_5.5" },
+  ];
+
+  const handleChange = (selected) => {
+    setOptionSelected(selected);
+    setTaxFilter(selected.map((val) => val.value));
+    console.log("selected from menu", selected);
+  };
+
+  return (
+    <div className="relative inline-flex pr-72">
+      <div className="absolute">
+        <ReactSelect
+          className="w-72 z-30"
+          options={taxes2}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          components={{
+            Option,
+          }}
+          styles={{
+            multiValueLabel: (base) => ({
+              ...base,
+              backgroundColor: "#DBEBFE",
+              color: "#2663EB",
+              borderRadius: 5,
+            }),
+          }}
+          onChange={handleChange}
+          allowSelectAll={true}
+          value={optionSelected}
+          placeholder="FIltra por impuesto"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default DropdownFilter;
+
+/*
+import React, { useState, useRef, useEffect } from "react";
+import Transition from "../utils/Transition";
+
+import { default as ReactSelect } from "react-select";
+import { components } from "react-select";
+
+const Option = (props) => {
+  return (
+    <div>
+      <components.Option {...props}>
+        <input
+          type="checkbox"
+          checked={props.isSelected}
+          onChange={() => null}
+        />{" "}
+        <label>{props.label}</label>
+      </components.Option>
+    </div>
+  );
+};
+
 function DropdownFilter({ align, taxFilter, setTaxFilter }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const trigger = useRef(null);
   const dropdown = useRef(null);
+
+  const [optionSelected, setOptionSelected] = useState("");
+  const taxes = [
+    "es_general_21",
+    "es_reduced_10",
+    "es_super-reduced_4",
+    "fr_general_20",
+    "fr_reduced_5.5",
+  ];
+  const taxes2 = [
+    { value: "es_general_21", label: "es_general_21" },
+    { value: "es_reduced_10", label: "es_reduced_10" },
+    { value: "es_super-reduced_4", label: "es_super-reduced_4" },
+    { value: "fr_general_20", label: "fr_general_20" },
+    { value: "fr_reduced_5.5", label: "fr_reduced_5.5" },
+  ];
+
+  const handleChange = (selected) => {
+    setOptionSelected(selected);
+  };
 
   // close on click outside
   useEffect(() => {
@@ -31,13 +141,7 @@ function DropdownFilter({ align, taxFilter, setTaxFilter }) {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
-  const taxes = [
-    "es_general_21",
-    "es_reduced_10",
-    "es_super-reduced_4",
-    "fr_general_20",
-    "fr_reduced_5.5",
-  ];
+
   return (
     <div className="relative inline-flex">
       <button
@@ -70,12 +174,24 @@ function DropdownFilter({ align, taxFilter, setTaxFilter }) {
           <div className="text-xs font-semibold text-slate-400 uppercase pt-1.5 pb-2 px-4">
             Filters
           </div>
-          {taxes.map((tax, n) => {
+          <ReactSelect
+            options={taxes2}
+            isMulti
+            closeMenuOnSelect={false}
+            hideSelectedOptions={false}
+            components={{
+              Option,
+            }}
+            onChange={handleChange}
+            allowSelectAll={true}
+            value={optionSelected}
+          />
+          {taxes2.map((tax, n) => {
             return (
               <div key={n} className="py-1 px-3">
                 <label className="flex items-center">
                   <input type="checkbox" className="form-checkbox" />
-                  <span className="text-sm font-medium ml-2">{tax}</span>
+                  <span className="text-sm font-medium ml-2">{tax.value}</span>
                 </label>
               </div>
             );
@@ -105,3 +221,5 @@ function DropdownFilter({ align, taxFilter, setTaxFilter }) {
 }
 
 export default DropdownFilter;
+
+*/

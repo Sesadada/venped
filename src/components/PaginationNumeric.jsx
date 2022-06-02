@@ -1,25 +1,10 @@
-import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
-function PaginationNumeric({ pagination, numPage, setNumPage }) {
-  console.log("numPage", numPage);
-  const [page, setPage] = useState(numPage);
-  const [clicked, setClicked] = useState(false);
-  const checkClicked = (clicked) => {
-    return clicked ? "text-blue-500" : "text-slate-600 hover:text-white";
-  };
-
-  const specific = (e) => {
-    console.log(e.target.className);
-  };
-
+function PaginationNumeric({ pagination, setNumPage }) {
   const pageCount = Math.ceil(pagination.totalResults / 10);
   const changePage = ({ selected }) => {
-    console.log("selected", selected + 1);
     setNumPage(selected + 1);
   };
-  //child:p-2.5 child:m-1 child:rounded child:border-indigo-400 child:border-solid child:border-2
-  const btnStyle = {};
   return (
     <>
       <ReactPaginate

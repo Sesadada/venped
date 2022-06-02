@@ -13,7 +13,7 @@ function Products() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [numPage, setNumPage] = useState(1);
   const [titleFilter, setTitleFilter] = useState("");
-  const [taxFilter, setTaxFilter] = useState("");
+  const [taxFilter, setTaxFilter] = useState();
   const API = "http://vps-123eb2fc.vps.ovh.net/graphql/";
   const query = `query FetchProducts( $tax_filter: [String!], $title_filter: String, $order_by: String, $order: String, $page: Int!, $per_page: Int!){
   fetchProducts {
@@ -32,6 +32,17 @@ function Products() {
       page: numPage,
       title_filter: titleFilter,
     };
+    if (taxFilter) {
+      const final = taxFilter.map((val) => val.replace(/'/g, '"'));
+      console.log(final);
+      queryVariables["tax_filter"] = final;
+    }
+    if (taxFilter.length === 0) {
+      console.log("lenght", taxFilter.length);
+      console.log("deleting");
+      delete queryVariables["tax_filter"];
+    }
+
     const fetchData = async () => {
       const queryRes = await fetch(API, {
         method: "POST",
@@ -50,7 +61,9 @@ function Products() {
 
     fetchData();
     //setList(products);
-  }, [numPage, titleFilter]);
+    console.log("queryVariables", queryVariables);
+    console.log("taxFilter", taxFilter);
+  }, [numPage, titleFilter, taxFilter]);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -96,7 +109,6 @@ function Products() {
             <div className="mt-8">
               <PaginationNumeric
                 pagination={pagination}
-                numPage={numPage}
                 setNumPage={setNumPage}
               />
             </div>
