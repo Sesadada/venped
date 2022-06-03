@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import Transition from "../utils/Transition";
+import React, { useState } from "react";
 
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
@@ -23,17 +22,16 @@ function DropdownFilter({ align, taxFilter, setTaxFilter }) {
   const [optionSelected, setOptionSelected] = useState("");
 
   const taxes2 = [
-    { value: "es_general_21", label: "es_general_21" },
-    { value: "es_reduced_10", label: "es_reduced_10" },
-    { value: "es_super-reduced_4", label: "es_super-reduced_4" },
-    { value: "fr_general_20", label: "fr_general_20" },
-    { value: "fr_reduced_5.5", label: "fr_reduced_5.5" },
+    { value: "es_general_21", label: "ES general 21%" },
+    { value: "es_reduced_10", label: "ES reduced 10%" },
+    { value: "es_super-reduced_4", label: "ES super-reduced 4%" },
+    { value: "fr_general_20", label: "FR general 20%" },
+    { value: "fr_reduced_5.5", label: "FR reduced 5.5%" },
   ];
 
   const handleChange = (selected) => {
     setOptionSelected(selected);
     setTaxFilter(selected.map((val) => val.value));
-    console.log("selected from menu", selected);
   };
 
   return (
@@ -59,7 +57,7 @@ function DropdownFilter({ align, taxFilter, setTaxFilter }) {
           onChange={handleChange}
           allowSelectAll={true}
           value={optionSelected}
-          placeholder="FIltra por impuesto"
+          placeholder="Filtra por impuesto"
         />
       </div>
     </div>

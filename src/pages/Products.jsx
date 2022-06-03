@@ -7,40 +7,30 @@ import FilterButton from "../components/DropdownFilter";
 import ProductsTable from "../partials/products/ProductsTable";
 import PaginationNumeric from "../components/PaginationNumeric";
 
-function Products() {
+function Products({ API, query }) {
   const [list, setList] = useState([]);
   const [pagination, setPagination] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [numPage, setNumPage] = useState(1);
   const [titleFilter, setTitleFilter] = useState("");
-  const [taxFilter, setTaxFilter] = useState();
-  const API = "http://vps-123eb2fc.vps.ovh.net/graphql/";
-  const query = `query FetchProducts( $tax_filter: [String!], $title_filter: String, $order_by: String, $order: String, $page: Int!, $per_page: Int!){
-  fetchProducts {
-  results(taxFilter: $tax_filter, titleFilter: $title_filter, orderBy: $order_by, order: $order, page: $page, perPage:
-  $per_page) { id
-  title price tax stock
-  }
-  pagination(taxFilter: $tax_filter, titleFilter: $title_filter, orderBy: $order_by, order: $order, page: $page, perPage: $per_page) {
-  totalResults limitValue nextPage prevPage firstPage lastPage outOfRange
-  } }
-  }`;
+  const [taxFilter, setTaxFilter] = useState([]);
+  const [order, setOrder] = useState("");
+  const [orderBy, setOrderby] = useState("");
 
   useEffect(() => {
     const queryVariables = {
       per_page: 10,
       page: numPage,
       title_filter: titleFilter,
+      order: order,
+      order_by: orderBy,
     };
     if (taxFilter) {
       const final = taxFilter.map((val) => val.replace(/'/g, '"'));
-      console.log(final);
       queryVariables["tax_filter"] = final;
-    }
-    if (taxFilter.length === 0) {
-      console.log("lenght", taxFilter.length);
-      console.log("deleting");
-      delete queryVariables["tax_filter"];
+      if (taxFilter.length === 0) {
+        delete queryVariables["tax_filter"];
+      }
     }
 
     const fetchData = async () => {
@@ -60,10 +50,7 @@ function Products() {
     };
 
     fetchData();
-    //setList(products);
-    console.log("queryVariables", queryVariables);
-    console.log("taxFilter", taxFilter);
-  }, [numPage, titleFilter, taxFilter]);
+  }, [numPage, titleFilter, taxFilter, order, orderBy]);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -103,7 +90,12 @@ function Products() {
             </div>
 
             {/* Table */}
-            <ProductsTable list={list} pagination={pagination} />
+            <ProductsTable
+              list={list}
+              pagination={pagination}
+              setOrder={setOrder}
+              setOrderby={setOrderby}
+            />
 
             {/* Pagination */}
             <div className="mt-8">

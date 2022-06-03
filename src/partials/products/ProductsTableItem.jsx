@@ -20,12 +20,13 @@ function ProductsTableItem(props) {
       </td>
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
         <div className="inline-flex font-medium rounded-full text-center px-2.5 py-0.5 bg-blue-100 text-blue-600">
-          {props.tax} %
+          {props.tax
+            .replace(/^.{0,2}/g, (c) => c.toUpperCase())
+            .replace(/_+/g, " ")}{" "}
+          %
         </div>
       </td>
-      <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-        <div></div>
-      </td>
+
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
         <div
           className={`inline-flex font-medium rounded-full text-center px-2.5 py-0.5 ${statusColor(

@@ -14,16 +14,16 @@ function PaginationNumeric({ pagination, setNumPage }) {
         onPageChange={changePage}
         containerClassName={"flex h-10 justify-center"}
         pageClassName={
-          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 hover:bg-indigo-400 hover:text-white cursor-pointer"
+          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 hover:bg-indigo-200 hover:text-white cursor-pointer"
         }
         breakClassName={
-          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 hover:bg-indigo-400 hover:text-white cursor-pointer"
+          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 hover:bg-indigo-200 hover:text-white cursor-pointer"
         }
         previousLinkClassName={
-          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 mr-2 hover:bg-indigo-400 hover:text-white cursor-pointer"
+          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 mr-2 hover:bg-indigo-200 hover:text-white cursor-pointer"
         }
         nextLinkClassName={
-          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 ml-2 hover:bg-indigo-400 hover:text-white cursor-pointer"
+          "inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 ml-2 hover:bg-indigo-200 hover:text-white cursor-pointer"
         }
         disabledClassName={"paginationDisabled"}
         activeClassName={"bg-indigo-400 text-white"}
