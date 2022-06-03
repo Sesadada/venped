@@ -1,0 +1,13 @@
+{
+  "productsTable": {
+    "products": "Products",
+    "allProducts": ["ID", "PRODUCT", "PRICE", "TAX", "STOCK"],
+    "search": "Search by name",
+    "filter": "Filter by tax",
+    "catalogue": "Catalogue",
+    "pagTo": "to",
+    "pagOf": "of",
+    "pagRes": "results",
+    "pages": "PAGES"
+  }
+}

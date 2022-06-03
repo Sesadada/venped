@@ -1,0 +1,13 @@
+{
+  "productsTable": {
+    "products": "Productos",
+    "allProducts": ["ID", "PRODUCTO", "PRECIO", "IMPUESTO", "STOCK"],
+    "search": "Busca por nombre",
+    "filter": "Filtra por impuesto",
+    "catalogue": "Catálogo",
+    "pagTo": "a",
+    "pagOf": "de",
+    "pagRes": "resultados",
+    "pages": "PÁGINAS"
+  }
+}

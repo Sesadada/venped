@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Products from "./ProductsTableItem";
+import { useTranslation } from "react-i18next";
 
 function ProductsTable({ list, pagination, setOrder, setOrderby }) {
+  const [t, i18n, ready] = useTranslation("global");
+  if (!ready) return "loading Translations...";
   const titles = ["ID", "PRODUCTO", "PRECIO", "IMPUESTO", "STOCK"];
+  const allTitles = t("productsTable.allProducts", { returnObjects: true });
+
   const [localPos, setLocalPos] = useState([
     { name: "ID", order: "ASC", trad: "id" },
     { name: "PRODUCTO", order: "ASC", trad: "title" },
@@ -13,12 +18,22 @@ function ProductsTable({ list, pagination, setOrder, setOrderby }) {
 
   const handleOrder = (e) => {
     const sub = e.target.innerText;
-    const local = localPos.filter((pos) => pos.name === sub);
+
+    const local = localPos.filter(
+      (pos) =>
+        pos.name === sub ||
+        pos.trad.toUpperCase() === sub ||
+        pos.name.slice(0, -1) === sub
+    );
     let toggle = local[0].order === "ASC" ? "DESC" : "ASC";
 
     setLocalPos((prevState) => {
       const newState = prevState.map((obj) => {
-        if (obj.name === sub) {
+        if (
+          obj.name === sub ||
+          obj.trad.toUpperCase() === sub ||
+          obj.name.slice(0, -1) === sub
+        ) {
           return { ...obj, order: toggle };
         }
         return obj;
@@ -34,7 +49,7 @@ function ProductsTable({ list, pagination, setOrder, setOrderby }) {
     <div className="bg-white shadow-lg rounded-sm border border-slate-200 relative">
       <header className="px-5 py-4">
         <h2 className="font-semibold text-slate-800">
-          Productos{" "}
+          {t("productsTable.products")}{" "}
           <span className="text-slate-400 font-medium">
             {pagination.totalResults}
           </span>
@@ -47,7 +62,7 @@ function ProductsTable({ list, pagination, setOrder, setOrderby }) {
             {/* Table header */}
             <thead className="text-xs font-semibold uppercase text-slate-500 bg-slate-50 border-t border-b border-slate-200">
               <tr>
-                {titles.map((title, i) => {
+                {allTitles.map((title, i) => {
                   return (
                     <th
                       key={i}

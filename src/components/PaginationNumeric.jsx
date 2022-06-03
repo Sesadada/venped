@@ -1,15 +1,17 @@
 import ReactPaginate from "react-paginate";
+import { useTranslation } from "react-i18next";
 
 function PaginationNumeric({ pagination, setNumPage }) {
   const pageCount = Math.ceil(pagination.totalResults / 10);
   const changePage = ({ selected }) => {
     setNumPage(selected + 1);
   };
+  const [t, i18n] = useTranslation("global");
   return (
     <>
       <ReactPaginate
-        previousLabel={"Prev"}
-        nextLabel={"Next"}
+        previousLabel={"<"}
+        nextLabel={">"}
         pageCount={pageCount}
         onPageChange={changePage}
         containerClassName={"flex h-10 justify-center"}
@@ -31,12 +33,14 @@ function PaginationNumeric({ pagination, setNumPage }) {
 
       <div className="flex justify-center">
         <div className="text-sm text-slate-500 text-center sm:text-left py-2">
-          <span className="font-medium text-slate-600">1</span> a{" "}
-          <span className="font-medium text-slate-600">10</span> de{" "}
+          <span className="font-medium text-slate-600">1</span>{" "}
+          {t("productsTable.pagTo")}{" "}
+          <span className="font-medium text-slate-600">10</span>{" "}
+          {t("productsTable.pagOf")}{" "}
           <span className="font-medium text-slate-600">
             {pagination.totalResults}
           </span>{" "}
-          resultados
+          {t("productsTable.pagRes")}
         </div>
       </div>
     </>

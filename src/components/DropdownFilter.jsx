@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 
@@ -18,8 +18,9 @@ const Option = (props) => {
   );
 };
 
-function DropdownFilter({ align, taxFilter, setTaxFilter }) {
+function DropdownFilter({ setTaxFilter }) {
   const [optionSelected, setOptionSelected] = useState("");
+  const [t, i18n] = useTranslation("global");
 
   const taxes2 = [
     { value: "es_general_21", label: "ES general 21%" },
@@ -57,7 +58,7 @@ function DropdownFilter({ align, taxFilter, setTaxFilter }) {
           onChange={handleChange}
           allowSelectAll={true}
           value={optionSelected}
-          placeholder="Filtra por impuesto"
+          placeholder={t("productsTable.filter")}
         />
       </div>
     </div>
