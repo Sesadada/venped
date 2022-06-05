@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 function Products() {
   const [list, setList] = useState([]);
-  const [pagination, setPagination] = useState([]);
+  const [pagination, setPagination] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [numPage, setNumPage] = useState(1);
   const [titleFilter, setTitleFilter] = useState("");

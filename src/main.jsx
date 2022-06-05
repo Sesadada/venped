@@ -6,11 +6,7 @@ import global_es from "../src/translations/es/global.json";
 import global_en from "../src/translations/en/global.json";
 
 import i18n from "i18next";
-import {
-  useTranslation,
-  initReactI18next,
-  I18nextProvider,
-} from "react-i18next";
+import { I18nextProvider } from "react-i18next";
 
 i18n.init({
   interpolation: { escapeValue: false },
