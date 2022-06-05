@@ -48,7 +48,7 @@ function ProductsTable({ list, pagination, setOrder, setOrderby }) {
   return (
     <div className="bg-white shadow-lg rounded-sm border border-slate-200 relative">
       <header className="px-5 py-4">
-        <h2 className="font-semibold text-slate-800">
+        <h2 className="font-semibold text-skin-base">
           {t("productsTable.products")}{" "}
           <span className="text-slate-400 font-medium">
             {pagination.totalResults}

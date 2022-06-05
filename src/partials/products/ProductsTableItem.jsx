@@ -12,7 +12,7 @@ function ProductsTableItem(props) {
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
         <div className="font-medium text-sky-500">{props.id}</div>
       </td>
-      <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
+      <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap text-skin-base">
         <div>{props.title}</div>
       </td>
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">

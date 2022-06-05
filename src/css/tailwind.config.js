@@ -4,6 +4,23 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      textColor: {
+        skin: {
+          base: "var(--color-text-base)",
+          medio: "var(--color-text-medio)",
+          bluemedio: "var(--color-text-bluemedio)",
+          muted: "var(--color-text-muted)",
+          inverted: "var(--color-text-inverted)",
+        },
+      },
+      backgroundColor: {
+        skin: {
+          fill: "var(--color-fill)",
+          "button-accent": "var(--color-button-accent)",
+          "button-accent-hover": "var(--color-button-hover)",
+          "button-muted": "var(--color-button-muted)",
+        },
+      },
       boxShadow: {
         DEFAULT:
           "0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.02)",

@@ -11,3 +11,17 @@
 @import "additional-styles/theme.scss";
 
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-text-base: #424040; // gris oscuro-negro
+    --color-text-medio: #898686; // gris oscuro-medio
+    --color-text-muted: #0000ff; //blue
+    --color-text-bluemedio: #5656bd; //blue medio
+    --color-text-inverted: #ffffff; //blanco
+    --color-fill: #000049; // azul oscuro x sidebar
+    --color-button-accent: #7f7ff2; // blu claro
+    --color-button-hover: #c1c1f6; // blue claro
+    --color-button-lines: #6767f6; // blue medio
+  }
+}

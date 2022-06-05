@@ -13,13 +13,13 @@ function Header({ toEs, toEn }) {
             {/* Suggested space for translation flags */}
             <button
               onClick={toEs}
-              className="h-6 w-8 bg-transparent focus:bg-blue-600 focus:text-white hover:bg-blue-500 text-blue-700 text-xs text-center hover:text-white border border-indigo-500 hover:border-transparent rounded"
+              className="h-6 w-8 bg-transparent focus:bg-blue-600 focus:text-skin-inverted hover:bg-skin-button-accent-hover text-skin-muted text-xs text-center hover:text-skin-inverted border border-indigo-500 hover:border-transparent rounded"
             >
               ESP
             </button>
             <button
               onClick={toEn}
-              className="h-6 w-8 bg-transparent focus:bg-blue-600 focus:text-white hover:bg-blue-500 text-blue-700 text-xs text-center hover:text-white border border-indigo-500 hover:border-transparent rounded"
+              className="h-6 w-8 bg-transparent focus:bg-blue-600 focus:text-skin-inverted hover:bg-skin-button-accent-hover text-skin-muted text-xs text-center hover:text-skin-inverted border border-indigo-500 hover:border-transparent rounded"
             >
               ENG
             </button>
