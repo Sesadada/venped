@@ -1,6 +1,6 @@
 # Mosaic React
 
-React landing page template.
+React landing page template + integration api via GraphQL
 
 ## Project setup
 ```
